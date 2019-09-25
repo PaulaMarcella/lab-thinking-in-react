@@ -4,30 +4,34 @@ export default class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: ''
-      //   products: []
+      query: '',
+      products: this.props.products,
+      filteredProducts: []
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSearch(event) {
     event.preventDefault();
-    console.log(this.state.query);
-    this.setState({});
+    this.setState({
+      query: event.target.value
+    });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.event.target.value);
+    const filteredProducts = [...this.state.products].filter(products =>
+      products.name.toLowerCase().includes(this.state.query.toLowerCase())
+    );
+    console.log(this.state);
     this.setState({
-      query: event.target.value
+      filteredProducts: filteredProducts
     });
-    this.setState({});
   }
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="search">Search</label>
           <input
             type="text"
@@ -35,9 +39,7 @@ export default class SearchBar extends Component {
             onChange={this.handleSearch}
             value={this.state.query}
           />
-          <button type="submit" onSubmit={this.handleSubmit}>
-            Search
-          </button>
+          <button type="submit">Search</button>
         </form>
       </div>
     );

@@ -8,11 +8,10 @@ class FilterableProductTable extends Component {
     return (
       <div className="App">
         <h1>IronStore</h1>
+
         <SearchBar products={products} />
 
-        {products.map(products => (
-          <ProductTable products={products} />
-        ))}
+        <ProductTable products={products} />
       </div>
     );
   }

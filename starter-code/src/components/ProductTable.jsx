@@ -7,7 +7,16 @@ export default class ProductTable extends Component {
     return (
       <div>
         <table>
-          <ProductRow products={products} />
+          <tbody>
+            <tr>
+              <th>Product Name</th>
+              <th>Price</th>
+            </tr>
+
+            {products.map(products => (
+              <ProductRow products={products} />
+            ))}
+          </tbody>
         </table>
       </div>
     );
